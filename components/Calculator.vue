@@ -75,24 +75,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
-:root {
+.space {
   --primary-color: hsl(222, 26%, 31%);
   --secondary-color: hsl(224, 36%, 15%);
   --tertiary-color: hsl(223, 31%, 20%);
   --text-color: #ffffff;
   --button-primary: hsl(30, 25%, 89%);
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  height: 100%;
-  width: 100%;
-}
-.space {
+
+
   height: 100%;
   width: 100%;
   background-color: var(--primary-color);
@@ -110,6 +103,7 @@ export default {
   font-weight: 700;
   max-width: 440px;
   margin: 2rem;
+  width: 100%;
 }
 
 header {
@@ -155,6 +149,7 @@ button {
   color: var(--primary-color);
   font-weight: 700;
   border-radius: 0.5rem;
+  
 }
 
 button:nth-child(4),

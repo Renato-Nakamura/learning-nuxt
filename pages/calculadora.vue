@@ -1,7 +1,8 @@
 <template>
   <div class="page">
     <Navbar></Navbar>
-    <h1>Aprendendo vue 2/ Nuxt</h1>
+    <!-- <router-link to="/teste">teste</router-link> -->
+    <Calculator />
   </div>
 </template>
 
@@ -15,7 +16,17 @@ export default {
 </script>
 
 <style>
-h1{
-  font-size: 2rem;
+.page,
+html,
+body,
+#__nuxt,
+#__layout {
+  height: 100%;
+  width: 100%;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
 }
 </style>
