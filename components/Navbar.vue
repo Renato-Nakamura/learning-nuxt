@@ -1,6 +1,6 @@
 <template>
-  <div class="nav" v-bind:class="{ open: isOpen, closed: !isOpen }">
-    <ul v-if="isOpen">
+  <div :style="animation" id='oioi' class="nav" v-bind:class="{ open: isOpen, closed: (!isOpen || isOpen == '' )}">
+    <ul :style="animation" v-bind:class="{ closedtxt: !isOpen, opentxt: isOpen }">
       <li v-bind:key="name" v-for="{ name, path } of items">
         <nuxt-link :to="path">{{ name.toUpperCase() }}</nuxt-link>
       </li>
@@ -15,13 +15,11 @@
 export default {
   created() {
     this.$router.options.routes.forEach((route) => {
-      console.log(route);
       this.items.push({
         name: route.name,
         path: route.path,
       });
     });
-
     this.items = this.items.sort(function (a, b) {
       if (a.name == "index") return -1;
       if (b.name == "index") return 1;
@@ -33,18 +31,28 @@ export default {
       }
       return 0;
     });
+    setTimeout(() => this.isOpen = false, 250);
   },
   data() {
     return {
       items: [],
-      isOpen: false,
+      isOpen :'',
     };
   },
   methods: {
     openNav: function () {
+        console.log(this.isOpen)
       this.isOpen = !this.isOpen;
     },
   },
+  computed:{
+      animation(){
+          return{
+                "animation-duration": this.isOpen !== ''? "250ms":"0ms"
+
+          }
+      }
+  }
 };
 </script>
 
@@ -53,7 +61,9 @@ export default {
   /* background-color: white; */
   margin-left: auto;
 }
+
 .nav {
+  --nav-color: yellow;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -66,16 +76,25 @@ export default {
 }
 .closed {
   animation-name: close;
-  animation-duration: 500ms;
   position: fixed;
   background: none;
 }
 
 .open {
-  background-color: lightgray;
+  background-color: var(--nav-color);
   animation-name: open;
-  animation-duration: 500ms;
   /* transition: ease-in-out 200ms; */
+}
+
+.closedtxt {
+  position: fixed;
+  animation-name: closeText;
+  top: -24px;
+}
+
+.opentxt {
+  position: fixed;
+  animation-name: openText;
 }
 
 @keyframes open {
@@ -88,12 +107,31 @@ export default {
 }
 @keyframes close {
   from {
+    background-color: var(--nav-color);
     height: 24px;
     position: inherit;
   }
   to {
+    background-color: var(--nav-color);
     height: 0px;
     position: inherit;
+  }
+}
+@keyframes openText {
+  from {
+    top: -24px;
+  }
+  to {
+    top: 0px;
+  }
+}
+
+@keyframes closeText {
+  from {
+    top: 0px;
+  }
+  to {
+    top: -24px;
   }
 }
 </style>

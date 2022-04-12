@@ -4,7 +4,7 @@
       <span>Olá mundo</span>
       <span>{{ banana }}</span>
       <input type="text" @keydown.enter="teste" v-model="texto" />
-      <button v-on:click="sum" >enviar</button>
+      <button v-on:click="teste" >enviar</button>
     </div>
   </div>
 </template>
@@ -33,12 +33,13 @@ export default {
 };
 </script>
 
-<!--style>
+<style scoped>
 div {
   display: flex;
   justify-content: center;
 }
 .card {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   text-align: center;
